@@ -22,6 +22,13 @@ import sys
 import re
 import os
 
+from sphinx.ext.autodoc import (
+    ClassLevelDocumenter, InstanceAttributeDocumenter)
+
+def iad_add_directive_header(self, sig):
+    ClassLevelDocumenter.add_directive_header(self, sig)
+
+InstanceAttributeDocumenter.add_directive_header = iad_add_directive_header
 
 sys.path.insert(0, os.path.abspath('../'))
 
